@@ -1,0 +1,146 @@
+/** procedure dot_product **/
+FUNCTION dot_product ( v1 : ARRAY_OF INTEGER , v2 : ARRAY_OF INTEGER , VAR ps : INTEGER)
+VAR
+   
+  ps : INTEGER := 0 ; // le produi scalaire de deux vecteurs
+
+  taille_vecteurs INTEGER := v1.length ;
+
+  i : INTEGER ;
+
+BEGIN
+   
+ /*   calcul du produit scalaire    */
+  FOR i FROM 0 TO taille_vecteurs -1  DO   //indice de parcours de premier tableau
+
+     ps := ps + v1[i] * v2[i] ;
+
+  END_FOR
+  
+END
+/** FUNCTION dot_product **/
+FUNCTION dot_product ( v1 : ARRAY_OF INTEGER , v2 : ARRAY_OF INTEGER ) : return_INTEGER
+VAR
+   
+  ps : INTEGER := 0 ; // le produi scalaire de deux vecteurs
+
+  taille_vecteurs INTEGER := v1.length ;
+
+  i : INTEGER ;
+
+BEGIN
+   
+ /*   calcul du produit scalaire    */
+  FOR i FROM 0 TO taille_vecteurs -1  DO   //indice de parcours de premier tableau
+
+     ps := ps + v1[i] * v2[i] ;
+
+  END_FOR
+
+  RETURN ps ;
+  
+END
+
+/************* ALGORITHM  avec la version : appel a une procedure  ***************/
+ALGORITHM two_orthogonal _vectors
+VAR
+  
+   /* declaration des variables de travail    */
+   v1 : ARRAY_OF INTEGER[100] ; // taille max decdeux vecteurs est 100 
+   v2 : ARRAY_OF INTEGER[100] ; 
+
+   n : INTEGER  := 0 ; // eventuel taille reel de chaque vecteur, doit etre < 100
+   ps : INTEGER := 0 ; // le produi scalaire de deux vecteurs
+
+   i : INTEGER ;
+
+BEGIN
+  
+  n := 0 ;
+  // lecture de la taille de deux vecteurs
+  WHILE ( n <= 0 || n > 100 ) 
+    write ("Voulez-vous entrer la taille max de deux vecteurs( doit etre positif et < 100):")
+    read(n) ;
+  END-WHILE
+
+  // chargement du premier vecteur
+  write("Chargement du premier vecteur ....")
+  write (retour a la ligne)
+
+  FOR i FROM 0 TO n-1 DO
+     write (" Entrer l'element numero i du premier vecteur:")
+     read ( v1[i]) ;
+  END_FOR
+
+ // chargement du deuxieme vecteur
+  write("Chargement du deuxieme vecteur ....")
+  write (retour a la ligne)
+  
+  FOR i FROM 0 TO n-1 DO
+     write (" Entrer l'element numero i du premier vecteur:")
+     read ( v2[i]) ;
+  END_FOR
+
+ /*   calcul du produit scalaire    */
+  dot_product ( v1 , v2 , ps) ;
+
+  IF ( ps == 0 ) THEN
+     write( "les deux vecteur sont orthogonaux");
+   
+  ELSE
+      write( "les deux vecteur ne sont pas orthogonaux");
+  END_IF
+
+END
+
+/************* ALGORITHM  avec la version : appel a une fonction  ***************/
+ALGORITHM two_orthogonal _vectors
+VAR
+  
+   /* declaration des variables de travail    */
+   v1 : ARRAY_OF INTEGER[100] ; // taille max decdeux vecteurs est 100 
+   v2 : ARRAY_OF INTEGER[100] ; 
+
+   n : INTEGER  := 0 ; // eventuel taille reel de chaque vecteur, doit etre < 100
+   ps : INTEGER := 0 ; // le produi scalaire de deux vecteurs
+
+   i : INTEGER ;
+
+BEGIN
+  
+  n := 0 ;
+  // lecture de la taille de deux vecteurs
+  WHILE ( n <= 0 || n > 100 ) 
+    write ("Voulez-vous entrer la taille max de deux vecteurs( doit etre positif et < 100):")
+    read(n) ;
+  END-WHILE
+
+  // chargement du premier vecteur
+  write("Chargement du premier vecteur ....")
+  write (retour a la ligne)
+
+  FOR i FROM 0 TO n-1 DO
+     write (" Entrer l'element numero i du premier vecteur:")
+     read ( v1[i]) ;
+  END_FOR
+
+ // chargement du deuxieme vecteur
+  write("Chargement du deuxieme vecteur ....")
+  write (retour a la ligne)
+  
+  FOR i FROM 0 TO n-1 DO
+     write (" Entrer l'element numero i du premier vecteur:")
+     read ( v2[i]) ;
+  END_FOR
+
+ /*   calcul du produit scalaire    */
+  ps := dot_product ( v1 , v2 ) ;
+
+  IF ( ps == 0 ) THEN
+     write( "les deux vecteur sont orthogonaux");
+   
+  ELSE
+      write( "les deux vecteur ne sont pax orthogonaux");
+  END_IF
+
+END

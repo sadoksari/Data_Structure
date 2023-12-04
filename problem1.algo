@@ -1,0 +1,59 @@
+ALGORITHM sum_distinct_elements
+VAR
+   
+   /* declaration des variables de travail    */
+   tab1 : ARRAY_OF INTEGER[4] ; 
+   tab2 : ARRAY_OF INTEGER[4] ; 
+
+   sum : INTEGER := 0 ;
+   i , j : INTEGER  := 0;
+   trouve : BOOLEAN ;
+
+BEGIN
+
+  tab1 := {3,1,7,9}; // initialisation de set1.
+  tab2 := {2,4,1,9}; // initialisation de set2.
+
+ /*   faire le traitement sur le vecteur tab1[]    */
+  FOR i FROM 0 TO tab1.lenth -1  DO   //indice de parcours de premier tableau
+
+     trouve := false  ;
+
+     FOR j FROM 0 TO tab2.lenth -1  DO   //indice de parcours de deuxieme tableau
+
+         IF ( tab1[i] == tab2[j] )
+             trouve := true ;
+             break;
+         END_IF
+
+     END_FOR
+     
+     IF ( trouve == false) THEN
+        sum := sum + tab1[i] ;
+     END_IF 
+
+  END_FOR
+  /*   faire le meme traitement sur le vecteur tab2[]    */
+  FOR i FROM 0 TO tab2.lenth -1  DO   //indice de parcours de premier tableau
+
+     trouve := false  ;
+
+     FOR j FROM 0 TO tab1.lenth -1  DO   //indice de parcours de deuxieme tableau
+
+         IF ( tab2[i] == tab1[j] )
+             trouve := true ;
+             break;
+         END_IF
+
+     END_FOR
+     
+     IF ( trouve == false) THEN
+        sum := sum + tab2[i] ;
+     END_IF 
+
+  END_FOR
+
+  write( "la somme est  :", sum) ;
+  
+END
+
